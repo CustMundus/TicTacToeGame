@@ -16,10 +16,12 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
+            android:fontFamily="cursive"
             android:gravity="center"
             android:text="Tic Tac Toe Game"
-            android:textSize="30sp" />
+            android:textColor="#000000"
+            android:textSize="40sp" />
     </TableRow>
 
     <TableRow
@@ -27,7 +29,8 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <ImageButton
+
+      <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -35,7 +38,8 @@
             android:background="#00FFFFFF"
             android:onClick="imageButtonClicked"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/hold" />
+            app:srcCompat="@drawable/hold"
+          />
 
         <ImageButton
             android:id="@+id/imageButton2"

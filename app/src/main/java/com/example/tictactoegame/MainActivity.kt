@@ -50,19 +50,16 @@ class MainActivity : AppCompatActivity() {
     fun imageButtonClicked(view: View){
 
         val selectedImageButton: ImageButton = view as ImageButton
-        var randomNumber = (Math.random() * 9 +1).toInt()
+        var randomNumber = (Math.random() * 6 +1).toInt()
 
         when (randomNumber) {
 
-            1 -> tableLayout.setBackgroundColor(Color.YELLOW)
-            2 -> tableLayout.setBackgroundColor(Color.DKGRAY)
-            3 -> tableLayout.setBackgroundColor(Color.GREEN)
-            4 -> tableLayout.setBackgroundColor(Color.LTGRAY)
-            5 -> tableLayout.setBackgroundColor(Color.CYAN)
-            6 -> tableLayout.setBackgroundColor(Color.MAGENTA)
-            7 -> tableLayout.setBackgroundColor(Color.RED)
-            8 -> tableLayout.setBackgroundColor(Color.BLUE)
-            9 -> tableLayout.setBackgroundColor(Color.WHITE)
+            1 -> tableLayout.setBackgroundColor(Color.parseColor("#004222"))
+            2 -> tableLayout.setBackgroundColor(Color.parseColor("#024359"))
+            3 -> tableLayout.setBackgroundColor(Color.parseColor("#e0b824"))
+            4 -> tableLayout.setBackgroundColor(Color.parseColor("#d17128"))
+            5 -> tableLayout.setBackgroundColor(Color.parseColor("#d04b3f"))
+            6 -> tableLayout.setBackgroundColor(Color.WHITE)
         }
 
         var optionNumber = 0
@@ -90,59 +87,11 @@ class MainActivity : AppCompatActivity() {
             selectedImageButton.isEnabled = false
             allDisabledImages.add(selectedImageButton)
             playingPlayer = PLAYINGPLAYER.SECOND_PLAYER
+            specifyTheWinnerOfGameFirst()
 
             if(human == true){
                 return
             }
-
-
-            if (player1Options.contains(1) && player1Options.contains(2) && player1Options.contains(3)){
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(1) && player2Options.contains(2) && player2Options.contains(3)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(4) && player1Options.contains(5) && player1Options.contains(6)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(4) && player2Options.contains(5) && player2Options.contains(6)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(7) && player1Options.contains(8) && player1Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(7) && player2Options.contains(8) && player2Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(1) && player1Options.contains(4) && player1Options.contains(7)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(1) && player2Options.contains(4) && player2Options.contains(7)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(2) && player1Options.contains(5) && player1Options.contains(8)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(2) && player2Options.contains(5) && player2Options.contains(8)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(3) && player1Options.contains(6) && player1Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(3) && player2Options.contains(6) && player2Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(1) && player1Options.contains(5) && player1Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(1) && player2Options.contains(5) && player2Options.contains(9)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            } else if (player1Options.contains(3) && player1Options.contains(5) && player1Options.contains(7)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-            } else if (player2Options.contains(3) && player2Options.contains(5) && player2Options.contains(7)) {
-                winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-            }
-
-            if(winnerOfGame == WINNER_OF_GAME.PLAYER_ONE) {
-                createAlert("Player One Wins","Congratulations to Player 1",AlertDialog.BUTTON_POSITIVE, "OK", false)
-
-                return
-            }
-
-
-
-
-
-
-
-
 
 
         }
@@ -153,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                     player2Options.add(optionNumber)
                     selectedImageButton.isEnabled =false
                     allDisabledImages.add(selectedImageButton)
-                    specifyTheWinnerOfGame()
+                    specifyTheWinnerOfGameSecond()
                     playingPlayer = PLAYINGPLAYER.FIRST_PLAYER
 
                 }
@@ -185,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                         player2Options.add((imageNumber))
                         selectedImageButton.isEnabled = false
                         allDisabledImages.add((selectedImageButton))
-                        specifyTheWinnerOfGame()
+                        specifyTheWinnerOfGameSecond()
                         playingPlayer = PLAYINGPLAYER.FIRST_PLAYER
                     } catch(e:Exception){
                         e.printStackTrace()
@@ -241,46 +190,52 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun specifyTheWinnerOfGame(){
+    private fun specifyTheWinnerOfGameFirst(){
         if (player1Options.contains(1) && player1Options.contains(2) && player1Options.contains(3)){
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(1) && player2Options.contains(2) && player2Options.contains(3)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(4) && player1Options.contains(5) && player1Options.contains(6)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(4) && player2Options.contains(5) && player2Options.contains(6)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(7) && player1Options.contains(8) && player1Options.contains(9)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(7) && player2Options.contains(8) && player2Options.contains(9)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(1) && player1Options.contains(4) && player1Options.contains(7)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(1) && player2Options.contains(4) && player2Options.contains(7)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(2) && player1Options.contains(5) && player1Options.contains(8)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(2) && player2Options.contains(5) && player2Options.contains(8)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(3) && player1Options.contains(6) && player1Options.contains(9)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(3) && player2Options.contains(6) && player2Options.contains(9)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         } else if (player1Options.contains(1) && player1Options.contains(5) && player1Options.contains(9)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(1) && player2Options.contains(5) && player2Options.contains(9)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
-        } else if (player1Options.contains(3) && player1Options.contains(5) && player1Options.contains(7)) {
+        }  else if (player1Options.contains(3) && player1Options.contains(5) && player1Options.contains(7)) {
             winnerOfGame = WINNER_OF_GAME.PLAYER_ONE
-        } else if (player2Options.contains(3) && player2Options.contains(5) && player2Options.contains(7)) {
-            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
         }
+        checkDrawState()
 
-       /* if(winnerOfGame == WINNER_OF_GAME.PLAYER_ONE) {
+        if(winnerOfGame == WINNER_OF_GAME.PLAYER_ONE) {
             createAlert("Player One Wins","Congratulations to Player 1",AlertDialog.BUTTON_POSITIVE, "OK", false)
 
             return
-        } else*/ if (winnerOfGame == WINNER_OF_GAME.PLAYER_TWO){
+        }
+    }
+    private fun specifyTheWinnerOfGameSecond(){
+        if (player2Options.contains(1) && player2Options.contains(2) && player2Options.contains(3)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        } else if (player2Options.contains(4) && player2Options.contains(5) && player2Options.contains(6)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        }else if (player2Options.contains(7) && player2Options.contains(8) && player2Options.contains(9)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        } else if (player2Options.contains(1) && player2Options.contains(4) && player2Options.contains(7)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        }else if (player2Options.contains(2) && player2Options.contains(5) && player2Options.contains(8)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        }else if (player2Options.contains(3) && player2Options.contains(6) && player2Options.contains(9)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        } else if (player2Options.contains(1) && player2Options.contains(5) && player2Options.contains(9)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        }else if (player2Options.contains(3) && player2Options.contains(5) && player2Options.contains(7)) {
+            winnerOfGame = WINNER_OF_GAME.PLAYER_TWO
+        }
+
+            if (winnerOfGame == WINNER_OF_GAME.PLAYER_TWO){
             createAlert("Player Two Wins","Congratulations to Player 2",AlertDialog.BUTTON_POSITIVE, "OK", false)
 
             return
@@ -337,6 +292,9 @@ class MainActivity : AppCompatActivity() {
         imageButton7.isEnabled = true
         imageButton8.isEnabled = true
         imageButton9.isEnabled = true
+
+        playingPlayer = PLAYINGPLAYER.FIRST_PLAYER
+
         return
     }
 
